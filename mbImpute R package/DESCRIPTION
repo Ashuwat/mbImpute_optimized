@@ -1,4 +1,4 @@
-Package: mbImpute_optimized
+Package: mbImputeOptim
 Type: Package
 Title: An accurate and robust imputation method for microbiome data
 Version: 0.1.0
