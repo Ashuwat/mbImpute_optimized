@@ -224,9 +224,9 @@ data_fit2 <- function(y_sim, metadata, D, k, parallel = F, ncores = 1){
     # test = pz - 1.96 * sqrt(pz * (1-pz)/n)
     # if(nz == n || test <= 0){
     if(sum(y <= (log10(1.01) + 1e-6)) / n > 0.89){
-      return(0)
+      return(false)
     }else{
-      return(1)
+      return(true)
     }
   })
 
