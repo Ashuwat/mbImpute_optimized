@@ -226,9 +226,9 @@ data_fit2 <- function(y_sim, metadata, D, k, parallel = F, ncores = 1){
     print(y)
     print(length(y))
     if(sum(y <= (log10(1.01) + 1e-6)) / n > 0.89){
-      return(false)
+      return(FALSE)
     }else{
-      return(true)
+      return(TRUE)
     }
   })
 
