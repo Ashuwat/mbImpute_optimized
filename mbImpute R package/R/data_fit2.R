@@ -400,14 +400,14 @@ data_fit2 <- function(y_sim, metadata, D, k, parallel = F, ncores = 1){
     penalized_weights <- c(penalized_weights, rep(1, n*(n-1)), rep(1, n*p))
     #print(length(penalized_weights))
     #print(dim(design_mat_fit))
-    response <- y_sim[confidence_set]
+    response <- mapply(function(i, j) y_sim[i, j], confidence_set[, 1], confidence_set[, 2])
 
     set.seed(1)
     print(dim(design_mat_fit))
     cat("x dim:", dim(design_mat_fit), "\n")      # rows × cols
     cat("length(response):", length(response), "\n")
     cat("length(penalized_weights):", length(penalized_weights), "\n")
-                       
+    
     cv.result <- cv.glmnet(x = design_mat_fit, y = response, family = "gaussian", penalty.factor = penalized_weights, intercept = TRUE)
     c1[[i]] <- coef(cv.result, s = cv.result$lambda.min)
     mse[i] = min(cv.result$cvm)
