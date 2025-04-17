@@ -400,7 +400,8 @@ data_fit2 <- function(y_sim, metadata, D, k, parallel = F, ncores = 1){
     penalized_weights <- c(penalized_weights, rep(1, n*(n-1)), rep(1, n*p))
     #print(length(penalized_weights))
     #print(dim(design_mat_fit))
-    response <- y_sim[confidence_set]
+    response <- mapply(function(i, j) y_sim[i, j], confidence_set[, 1], confidence_set[, 2])
+
     # this is a rudamentary fix, this should be changed
     response <- response[1:nrow(design_mat_fit)]
     set.seed(1)
