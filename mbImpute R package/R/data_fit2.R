@@ -406,6 +406,10 @@ data_fit2 <- function(y_sim, metadata, D, k, parallel = F, ncores = 1){
     response <- response[1:nrow(design_mat_fit)]
     set.seed(1)
     print(dim(design_mat_fit))
+    cat("x dim:", dim(design_mat_fit), "\n")      # rows × cols
+    cat("length(response):", length(response), "\n")
+    cat("length(penalized_weights):", length(penalized_weights), "\n")
+                       
     cv.result <- cv.glmnet(x = design_mat_fit, y = response, family = "gaussian", penalty.factor = penalized_weights, intercept = TRUE)
     c1[[i]] <- coef(cv.result, s = cv.result$lambda.min)
     mse[i] = min(cv.result$cvm)
