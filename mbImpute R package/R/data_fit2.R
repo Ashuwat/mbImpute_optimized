@@ -104,7 +104,7 @@ data_fit2 <- function(y_sim, metadata, D, k, parallel = F, ncores = 1){
           cov_par_t1 <- solve(t(X_tilta) %*% X_tilta) %*% t(X_tilta) %*% y_tilta
           TRUE
         },
-        error=function(cond) {
+        error=function(cond) {f
           FALSE
         }
       )
@@ -259,7 +259,7 @@ data_fit2 <- function(y_sim, metadata, D, k, parallel = F, ncores = 1){
   })
 
   hd_result <- result[1:6]
-  confidence_set <- c(0,0)
+  confidence_set <- matrix(nrow=0, ncol=2)
   impute_set <- c(0,0)
   for(i in 1:length(result)){
     d_set <- result[[i]]
