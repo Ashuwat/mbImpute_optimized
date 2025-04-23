@@ -407,8 +407,9 @@ data_fit2 <- function(y_sim, metadata, D, k, parallel = F, ncores = 1){
     cat("x dim:", dim(design_mat_fit), "\n")      # rows × cols
     cat("length(response):", length(response), "\n")
     cat("length(penalized_weights):", length(penalized_weights), "\n")
+    cat("response_last", response[length(response)-1])
     
-    cv.result <- cv.glmnet(x = design_mat_fit, y = response, family = "gaussian", penalty.factor = penalized_weights, intercept = TRUE)
+    cv.result <- cv.glmnet(x = design_mat_fit, y = response[1:length(response)-1], family = "gaussian", penalty.factor = penalized_weights, intercept = TRUE)
     c1[[i]] <- coef(cv.result, s = cv.result$lambda.min)
     mse[i] = min(cv.result$cvm)
     print(mse)
