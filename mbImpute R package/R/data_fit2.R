@@ -104,7 +104,7 @@ data_fit2 <- function(y_sim, metadata, D, k, parallel = F, ncores = 1){
           cov_par_t1 <- solve(t(X_tilta) %*% X_tilta) %*% t(X_tilta) %*% y_tilta
           TRUE
         },
-        error=function(cond) {f
+        error=function(cond) {
           FALSE
         }
       )
